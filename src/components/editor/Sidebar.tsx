@@ -78,7 +78,9 @@ export default function Sidebar() {
         }
     };
 
+
     const onDragStart = (event: React.DragEvent, type: string, payload?: any) => {
+        event.stopPropagation(); // Prevent event bubbling
         event.dataTransfer.setData('application/reactflow', type);
         if (payload) {
             event.dataTransfer.setData('application/payload', JSON.stringify(payload));

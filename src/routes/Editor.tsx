@@ -3,12 +3,18 @@ import { ReactFlowProvider } from 'reactflow';
 import Canvas from '@/components/editor/Canvas';
 import Sidebar from '@/components/editor/Sidebar';
 import Scene3D from '@/components/editor/3d/Scene3D';
+import CommandPalette from '@/components/editor/CommandPalette';
+import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { useParams } from 'react-router-dom';
 import { Box, Cuboid } from 'lucide-react';
 
 export default function Editor() {
     const { id } = useParams();
     const [viewMode, setViewMode] = useState<'2D' | '3D'>('2D');
+    const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+
+    // Setup keyboard shortcuts
+    useKeyboardShortcuts(() => setIsCommandPaletteOpen(true));
 
     return (
         <div className="h-screen w-full bg-slate-50 relative overflow-hidden">
@@ -45,6 +51,12 @@ export default function Editor() {
                     <Scene3D />
                 )}
             </div>
+
+            {/* Command Palette */}
+            <CommandPalette
+                isOpen={isCommandPaletteOpen}
+                onClose={() => setIsCommandPaletteOpen(false)}
+            />
         </div>
     );
 }

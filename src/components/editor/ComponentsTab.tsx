@@ -7,6 +7,7 @@ export default function ComponentsTab() {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
     const onDragStart = (event: React.DragEvent, component: any) => {
+        event.stopPropagation(); // Prevent event bubbling to parent elements
         // Create an icon node (not a service node) with the component data
         event.dataTransfer.setData('application/reactflow', 'icon');
         event.dataTransfer.setData(

@@ -91,7 +91,11 @@ export default function Canvas() {
                     ...(payload as any),
                     style: { backgroundColor: color }
                 },
-                style: { backgroundColor: color }
+                style: {
+                    backgroundColor: color,
+                    width: 150,  // Reduced from default ~200
+                    height: 100  // Reduced from default ~150
+                }
             };
 
             addNode(newNode);
